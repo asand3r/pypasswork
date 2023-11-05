@@ -6,10 +6,16 @@ authors = [
 ]
 requires-python = ">=3.10"
 license = {text = "MIT"}
+readme = "README.md"
 dependencies = [
     "requests>=2.30.0"
 ]
 dynamic = ["version"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
 [tool.setuptools.dynamic]
 version = {attr = "pypasswork.__version__.__version__"}
