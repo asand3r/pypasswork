@@ -106,13 +106,6 @@ class PassworkAPI:
 
         return resp.data['token']
 
-    def __del__(self):
-
-        logger.debug('In __del__')
-
-        if self.__token:
-            self._logout()
-
     def _logout(self) -> None:
         """
         Logout from Passwork"""
