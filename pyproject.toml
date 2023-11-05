@@ -1,0 +1,25 @@
+[project]
+name = "pypasswork"
+description = "Passwork API library"
+authors = [
+    { name = "Khatsayuk Alexander", email = "asand3r@ya.ru" }
+]
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "requests>=2.30.0"
+]
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {attr = "pypasswork.__version__.__version__"}
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit"
+]
+
