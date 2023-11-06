@@ -1,6 +1,7 @@
 """Passwork API /passwords endpoint operations"""
 
 import base64
+from collections.abc import Sequence
 import dataclasses
 import logging
 from dataclasses import dataclass
@@ -54,7 +55,7 @@ class Passwords:
                tags: Optional[list[str]] = None,
                include_shared: bool = False,
                exact: bool = False,
-               exact_tags: bool = False) -> Optional[list[Password]]:
+               exact_tags: bool = False) -> Optional[Sequence[Password]]:
         """
         Implement search password in Passwork with given entry name.
 
@@ -82,7 +83,7 @@ class Passwords:
         if include_shared:
             search_params['includeShared'] = include_shared
 
-        resp = self._api.make_request('POST', endpoint='passwords/search', parameters=search_params, timeout=10)
+        resp = self._api.req('POST', endpoint='passwords/search', parameters=search_params, timeout=10)
         passwords = [self.get(password['id']) for password in resp.data]
 
         if exact:
@@ -107,7 +108,7 @@ class Passwords:
         logger.debug('In get')
 
         try:
-            resp: PassworkResponse = self._api.make_request('GET', endpoint=f'passwords/{password_id}')
+            resp: PassworkResponse = self._api.req('GET', endpoint=f'passwords/{password_id}')
         except PassworkInteractionError as e:
             logger.error(f'Cannot get password wih ID "{password_id}": {e}')
         else:
