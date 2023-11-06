@@ -28,9 +28,10 @@ class PassworkAPI:
         self._url = url
         self._key = key
         self._session = Session()
+        self._root_api = 'api/v4'
         self.__token = None
 
-        self._login()
+        self.login()
         self.passwords = Passwords(self)
 
     def __repr__(self) -> str:
@@ -64,7 +65,7 @@ class PassworkAPI:
             PassworkInteractionError
         """
 
-        base_url = f'{self._url}/api/v4{endpoint}'
+        base_url = f'{self._url}/{self._root_api}/{endpoint}'
 
         pw_req = Request(method=method, url=base_url, headers=self._headers, json=parameters).prepare()
 
@@ -86,29 +87,29 @@ class PassworkAPI:
 
         return PassworkResponse(status=data['status'], data=data['data'])
 
-    def _login(self) -> None:
+    def login(self, print_token: bool = False) -> None:
         """
         Login to Passwork API with given key and get auth token string.
         Fetched token writes to self.__token attribute and uses in
         all PasswordAPI requests as 'Passwork-Auth' header value.
 
+        Parameters:
+            print_token: also print retrieved token
         Returns:
             None
         """
 
-        logger.debug('In _login')
+        logger.debug('In login')
 
-        try:
-            resp = self.make_request('POST', endpoint=f'/auth/login/{self._key}')
-        except PassworkInteractionError as e:
-            raise PassworkInteractionError(f'Passwork login failed: {e}')
+        resp = self.make_request('POST', endpoint=f'auth/login/{self._key}')
+        token = resp.data['token']
+        if print_token:
+            print(token)
+        self.__token = token
 
-        self.__token = resp.data['token']
+    def logout(self) -> None:
+        """Logout from Passwork"""
 
-    def _logout(self) -> None:
-        """
-        Logout from Passwork"""
+        logger.debug('In logout')
 
-        logger.debug('In _logout')
-
-        self.make_request('POST', endpoint='/auth/logout')
+        self.make_request('POST', endpoint='auth/logout')
