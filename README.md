@@ -14,7 +14,7 @@ In current 0.0.1 version it can just find a password by name.
 from pypasswork import PassworkAPI
 
 papi = PassworkAPI(url='https://passwork.domain.name', key='foobar', vault_name='Some vault')
-password = papi.search_password('password_name')
+password = papi.passwords.search('password_name')
 print(password)
-P@ssword
+Password(name='password_name')
 ```
