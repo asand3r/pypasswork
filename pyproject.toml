@@ -16,7 +16,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-repository = "https://github.com/asand3r/pypasswork"
+[urls]
+Github = "https://github.com/asand3r/pypasswork"
 
 [tool.setuptools.dynamic]
 version = {attr = "pypasswork.__version__.__version__"}
