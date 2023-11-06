@@ -1,10 +1,9 @@
 import logging
 
-from pypasswork.passwork import PassworkAPI, PassworkResponse
+from pypasswork.passwork import PassworkAPI
 
 __all__ = [
-    PassworkAPI,
-    PassworkResponse
+    PassworkAPI
 ]
 
 logger = logging.getLogger(__name__)
