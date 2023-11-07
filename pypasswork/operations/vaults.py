@@ -4,12 +4,13 @@ import dataclasses
 import logging
 from collections.abc import Sequence, Mapping
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pypasswork.passwork import PassworkAPI
 
 from pypasswork.exceptions import PassworkInteractionError
 from pypasswork.operations.folders import Folder
 from pypasswork.response import PassworkResponse, PassworkStatus
-
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +40,7 @@ class Vaults:
     ...
     """
 
-    def __init__(self, api):
+    def __init__(self, api: 'PassworkAPI'):
         self._api = api
 
     def list_vaults(self) -> Sequence[Vault]:

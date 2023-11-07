@@ -3,7 +3,9 @@
 from collections.abc import Sequence
 import dataclasses
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pypasswork.passwork import PassworkAPI
 
 from pypasswork.operations.passwords import Password
 
@@ -25,7 +27,7 @@ class Folder:
 class Folders:
     """Implement Passwork folders API"""
 
-    def __init__(self, api):
+    def __init__(self, api: 'PassworkAPI'):
         self._api = api
 
     def search(self) -> Sequence[Folder]: ...
