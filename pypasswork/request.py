@@ -4,6 +4,7 @@ import logging
 from socket import gaierror
 from requests import Request, Session
 from requests.exceptions import ConnectionError, ConnectTimeout, JSONDecodeError
+
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pypasswork.passwork import PassworkAPI

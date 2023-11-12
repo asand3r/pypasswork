@@ -3,6 +3,7 @@
 from collections.abc import Sequence
 import dataclasses
 from dataclasses import dataclass
+
 from typing import Any, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from pypasswork.passwork import PassworkAPI

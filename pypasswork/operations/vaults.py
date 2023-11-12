@@ -2,10 +2,12 @@
 
 import base64
 import binascii
+
 import dataclasses
 import logging
 from collections.abc import Sequence, Mapping
 from dataclasses import dataclass
+
 from typing import Any, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from pypasswork.passwork import PassworkAPI
