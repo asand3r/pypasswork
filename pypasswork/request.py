@@ -4,6 +4,9 @@ import logging
 from socket import gaierror
 from requests import Request, Session
 from requests.exceptions import ConnectionError, ConnectTimeout, JSONDecodeError
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from pypasswork.passwork import PassworkAPI
 
 from pypasswork.response import PassworkResponse
 from pypasswork.exceptions import PassworkInteractionError
@@ -12,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 class PassworkRequest:
-    def __init__(self, api, verify: bool = True):
+    def __init__(self, api: 'PassworkAPI', verify: bool = True):
         self._api = api
         self._verify = verify
 

@@ -12,7 +12,6 @@ if TYPE_CHECKING:
 from pypasswork.exceptions import PassworkInteractionError
 from pypasswork.response import PassworkResponse, PassworkStatus
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -34,7 +33,7 @@ class Password:
     access_code: int
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__}(name={self.name})'
+        return f'{self.__class__.__name__}(name="{self.name})"'
 
     @property
     def password(self) -> str:

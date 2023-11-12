@@ -18,7 +18,7 @@ class Folder:
     parent_id: Optional[str]
 
     def __repr__(self) -> str:
-        return f'{self.__class__.__name__}(id={self.id}, name={self.name})'
+        return f'{self.__class__.__name__}(id="{self.id}", name="{self.name})"'
 
     def as_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)
