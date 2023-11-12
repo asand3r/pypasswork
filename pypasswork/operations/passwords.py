@@ -5,11 +5,12 @@ from collections.abc import Sequence
 import dataclasses
 import logging
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pypasswork.passwork import PassworkAPI
 
 from pypasswork.exceptions import PassworkInteractionError
 from pypasswork.response import PassworkResponse, PassworkStatus
-
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +33,7 @@ class Password:
     access_code: int
 
     def __repr__(self) -> str:
-        return f'Password(name={self.name})'
+        return f'{self.__class__.__name__}(name="{self.name})"'
 
     @property
     def password(self) -> str:
@@ -45,7 +46,7 @@ class Password:
 
 
 class Passwords:
-    def __init__(self, api) -> None:
+    def __init__(self, api: 'PassworkAPI') -> None:
         self._api = api
 
     def search(self,
